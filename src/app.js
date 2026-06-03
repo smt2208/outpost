@@ -29,9 +29,11 @@ app.use(cors({
 //importing the routes always after the configuartion 
 import healthCheckRouter from "./routes/healthcheck.routes.js";
 import authRouter from "./routes/auth.routes.js";
+import projectRouter from "./routes/project.routes.js";
 
 app.use('/api/v1/healthcheck', healthCheckRouter);//prefix in the url for healthcheck routes
 app.use('/api/v1/auth', authRouter);//prefix in the url for auth routes
+app.use('/api/v1/projects', projectRouter);//prefix in the url for projects routes
 
 // Global Error Handler Middleware (MUST have 4 arguments for Express to recognize it as an error handler)
 app.use((err, req, res, next) => {

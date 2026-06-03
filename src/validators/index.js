@@ -1,4 +1,6 @@
 import {body} from "express-validator";
+import { AvailableUserRole, AvailableTaskStatus } from "../utils/constants.js";
+
 
 
 
@@ -51,9 +53,78 @@ const UserForgotPasswordValidator = () => {
 }
 
 
+const ProjectCreateValidator = () => {
+  return [
+    body("name").trim().notEmpty().withMessage("Project name is required"),
+    body("description").trim().notEmpty().withMessage("Project description is required")
+  ]
+}
+
+const ProjectUpdateValidator = () => {
+  return [
+    body("name").optional().trim().notEmpty().withMessage("Project name cannot be empty"),
+    body("description").optional().trim().notEmpty().withMessage("Project description cannot be empty")
+  ]
+}
+
+const AssignMemberValidator = () => {
+  return [
+    body("email").trim().notEmpty().withMessage("Email is required").isEmail().withMessage("Invalid email format"),
+    body("role").optional().trim().isIn(AvailableUserRole).withMessage("Invalid member role")
+  ]
+}
+
+const UpdateMemberRoleValidator = () => {
+  return [
+    body("role")
+      .trim()
+      .notEmpty()
+      .withMessage("Role is required")
+      .isIn(AvailableUserRole)
+      .withMessage("Invalid member role")
+  ]
+}
+
+const TaskCreateValidator = () => {
+  return [
+    body("title").trim().notEmpty().withMessage("Task title is required"),
+    body("description").optional().trim(),
+    body("status").optional().trim().isIn(AvailableTaskStatus).withMessage("Invalid task status")
+  ]
+}
+
+const TaskUpdateValidator = () => {
+  return [
+    body("title").optional().trim().notEmpty().withMessage("Task title cannot be empty"),
+    body("description").optional().trim(),
+    body("status").optional().trim().isIn(AvailableTaskStatus).withMessage("Invalid task status")
+  ]
+}
+
+const SubtaskCreateValidator = () => {
+  return [
+    body("title").trim().notEmpty().withMessage("Subtask title is required")
+  ]
+}
+
+const SubtaskUpdateValidator = () => {
+  return [
+    body("title").optional().trim().notEmpty().withMessage("Subtask title cannot be empty"),
+    body("isCompleted").optional().isBoolean().withMessage("isCompleted must be a boolean")
+  ]
+}
+
 export {
   UserRegisterValidator,
   UserLoginValidator,
   UserChangePasswordValidator,
-  UserForgotPasswordValidator
+  UserForgotPasswordValidator,
+  ProjectCreateValidator,
+  ProjectUpdateValidator,
+  AssignMemberValidator,
+  UpdateMemberRoleValidator,
+  TaskCreateValidator,
+  TaskUpdateValidator,
+  SubtaskCreateValidator,
+  SubtaskUpdateValidator
 }  
