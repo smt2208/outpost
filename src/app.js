@@ -30,7 +30,7 @@ app.use(cors({
 import healthCheckRouter from "./routes/healthcheck.routes.js";
 import authRouter from "./routes/auth.routes.js";
 
-app.use('/api/v1/healthCheck', healthCheckRouter);//prefix in the url for healthcheck routes
+app.use('/api/v1/healthcheck', healthCheckRouter);//prefix in the url for healthcheck routes
 app.use('/api/v1/auth', authRouter);//prefix in the url for auth routes
 
 // Global Error Handler Middleware (MUST have 4 arguments for Express to recognize it as an error handler)

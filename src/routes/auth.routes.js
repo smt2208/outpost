@@ -20,7 +20,7 @@ const router = Router();
 // Public Routes
 router.route('/register').post(UserRegisterValidator(),validate,registerUser);
 router.route("/login").post(UserLoginValidator(),validate,login);
-router.route("/verify-email/:token").get(verifyEmail);
+router.route("/verify-email/:verificationToken").get(verifyEmail);
 router.route("/refresh-token").post(refreshAccessToken);
 router.route("/forgot-password").post(UserForgotPasswordValidator(), validate, forgotPassword);
 router.route("/reset-password/:resetToken").post(resetPassword);

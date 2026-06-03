@@ -96,14 +96,14 @@ const login=asyncHandler(async(req,res)=>{
 
 
 const verifyEmail = asyncHandler(async (req, res) => {
-  const { token } = req.params;
+  const { verificationToken } = req.params;
 
-  if (!token) {
+  if (!verificationToken) {
     throw new ApiError(400, "Verification token is missing");
   }
 
   // Hash the incoming unhashed token to compare with the one in DB
-  const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+  const hashedToken = crypto.createHash("sha256").update(verificationToken).digest("hex");
 
   // Find user with the matching hashed token and make sure it has not expired
   const user = await User.findOne({
