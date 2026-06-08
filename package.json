@@ -9,10 +9,10 @@
   "license": "ISC",
   "author": "smt2208",
   "type": "module",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "start": "node index.js"
+    "start": "node src/index.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.14",
@@ -28,6 +28,7 @@
     "jsonwebtoken": "^9.0.3",
     "mailgen": "^2.0.34",
     "mongoose": "^9.6.3",
+    "multer": "^2.1.1",
     "nodemailer": "^8.0.10",
     "resend": "^6.12.4"
   }
